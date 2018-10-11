@@ -1,0 +1,6 @@
+b : ba 25 bb 35 bc 40
+cd : cd1 40 cd2 60
+def : f1 10 f2 90
+abc : a 30 b 30 cd 20 def 20
+a : aa 55 ab 40 ac 5
+aa : a1a 35 a2a 35 a3a 30
