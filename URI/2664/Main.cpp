@@ -1,15 +1,20 @@
 #include <iostream>
 using namespace std;
 
+unsigned long mod(unsigned long num) {
 
-int recursao(int tempo, int estado, int max, int min, unsigned long **dp, int rows, int cols, bool **check ){
+    return num % 1000000007;
+
+}
+
+int recursao(int tempo, int estado, int max, int min, unsigned long **dp, bool **check ){
     if(estado > max || estado < min) return 0;
     if(tempo == 0) return 1;
     if(check[estado][tempo]) return dp[estado][tempo];
     // cout << dp[estado][tempo] << endl;
 
-    unsigned long resp = recursao(tempo - 1, estado + 1, max, min, dp, rows, cols, check) +
-                         recursao(tempo - 1, estado - 1, max, min, dp, rows, cols, check);
+    unsigned long resp = mod(mod(recursao(tempo - 1, estado + 1, max, min, dp, check)) +
+                         mod(recursao(tempo - 1, estado - 1, max, min, dp, check)));
     //cout << resp << endl;
     dp[estado][tempo] = resp;
     check[estado][tempo] = true;
@@ -39,7 +44,7 @@ int main(){
 
 
     for(i = m; i <= n; i ++){
-        resp += recursao(t-1, i, n, m, dp, (n+5), (t+5), check);
+        resp = mod(resp + recursao(t-1, i, n, m, dp, check));
     }
 
     //resp = (resp % 1000000000) + 7 ;
